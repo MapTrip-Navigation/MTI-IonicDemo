@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      MapTrip Interface with Ionic
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <p>Enter your Destination Coordinates (WGS84) and press "Start Navigation"</p>
+    <ion-input [(ngModel)]="latValue" id="tbLat" placeholder="Latitude" type="number"></ion-input>
+    <ion-input [(ngModel)]="lngValue" id="tbLng" placeholder="Longitude" type="number"></ion-input>
+    <br />
+    <ion-button (click)="startNavigation()">Start Navigation</ion-button>
+    <br />
+    <br />
+    <br />
+    <label id="coiLabel"></label>
+  </div>
+</ion-content>

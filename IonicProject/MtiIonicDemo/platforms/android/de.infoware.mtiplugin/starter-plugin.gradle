@@ -1,0 +1,13 @@
+android {
+	ndkVersion "22.0.7026061"
+}
+
+repositories {
+    maven {
+        url "http://artifactory.infoware.de:8080/artifactory/libs-gradle/"
+    }
+}
+
+dependencies {
+    implementation "de.infoware:mti:8.5.3"	
+}
