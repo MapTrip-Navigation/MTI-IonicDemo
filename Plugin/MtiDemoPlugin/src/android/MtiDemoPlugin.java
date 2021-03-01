@@ -25,6 +25,9 @@ public class MtiDemoPlugin extends CordovaPlugin implements ApiListener, Navigat
 
     private final String TAG = "MtiDemoPlugin";
 
+    private String className = "";
+    private String packageName = "";
+
     private CallbackContext mtiInitCallback;
     private CallbackContext removeDestinationsCallback;
     private CallbackContext appendDestinationCallback;
@@ -47,14 +50,19 @@ public class MtiDemoPlugin extends CordovaPlugin implements ApiListener, Navigat
         super.initialize(cordova, webView);
         Log.d(TAG, "initialize");
 
-        // The Application Context is needed to initialize the connection to maptrip
+        // The Application Context is needed to initialize the connection to MapTrip
         Context context = webView.getContext().getApplicationContext();
+
+        // Saving PackageName and ClassName of the Activity on startup
+        // Gets used in Api.showApp() to switch back to the ionic app when necessary
+        packageName = cordova.getActivity().getPackageName();
+        className = cordova.getActivity().getClass().getCanonicalName();
 
         MTIHelper.initialize(context);
         Api.registerListener(this);
         Navigation.registerListener(this);
 
-        Api.enableLogging("", 100, 0, 0, false, true);
+        //Api.enableLogging("", 100, 0, 0, false, true);
     }
 
     /*
@@ -185,8 +193,9 @@ public class MtiDemoPlugin extends CordovaPlugin implements ApiListener, Navigat
         // Saving the callback to fulfill / deny later in the mti-callback "hideServerResult"
         hideServerCallback = callbackContext;
 
-        // Calling the MTI - function
-        Api.hideServer();
+        // Calling the MTI - function to show this Activity again
+        // We're using 'showApp' instead of 'hideServer' to get the ionic-app explicitly back into the foreground, rather than minimizing MapTrip
+        Api.showApp(packageName, className);
     }
 
 
@@ -220,6 +229,19 @@ public class MtiDemoPlugin extends CordovaPlugin implements ApiListener, Navigat
 
     @Override
     public void showAppResult(int i, ApiError apiError) {
+
+        if(hideServerCallback != null) {
+            // Checks the ApiError value, and fulfils / denies it respectively
+            if(apiError.getIntVal() == ApiError.OK.getIntVal()) {
+                hideServerCallback.success(apiError.toString());
+            } else {
+                hideServerCallback.error(apiError.toString());
+            }
+
+        }
+
+
+        Log.d(TAG, "hideServer Result: " + apiError.toString());
 
     }
 

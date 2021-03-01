@@ -52,7 +52,7 @@
   "de.infoware.mtiplugin": {
     "source": {
       "type": "local",
-      "path": "C:\\develop\\MTI_Ionic_Demo\\MtiIonicDemo\\node_modules\\de.infoware.mtiplugin"
+      "path": "C:\\develop\\MtiIonicDemo Github\\IonicProject\\MtiIonicDemo\\node_modules\\de.infoware.mtiplugin"
     },
     "is_top_level": true,
     "variables": {}
