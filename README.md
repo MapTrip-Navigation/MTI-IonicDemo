@@ -1,10 +1,10 @@
-# Using MTI with Ionic
+# Using the MapTrip interface (MTI) with Ionic
 
 This project is meant to show how to integrate [MTI](http://www.maptrip.de/docs/mti/) with your *Ionic cordova* application.  
 
 This includes an example mti-plugin, which is necessary to call native java-code from your application, the ionic-wrapper to wrap the native-calls as Promises or Observables, and the Ionic-Project itself.  
 
-The available functionality is limited to sending a WGS84-Coordinate to *MapTrip*, calculating and starting the navigation, and switching to *MapTrip* when the navigation has been started. With these examples you will learn how to send the MTI-requests to the native side of the app, and how to receive the necessary callbacks from MTI and handle them in your ionic-app.
+The available functionality is limited to sending a WGS84-Coordinate to *MapTrip*, calculating the route, starting the guidance and switching to *MapTrip* when the guidance has been started. With these examples you will learn how to send the MTI-requests to the native side of the app, and how to receive the necessary callbacks from MTI and handle them in your ionic-app.
 
 ***
 ## Preparations
